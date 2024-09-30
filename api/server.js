@@ -22,6 +22,26 @@ async function getData() {
   }
 }
 
+async function getBoxScore(week, abbreviation) {
+  try {
+    const result = await fetch(
+      `https://api.mysportsfeeds.com/v2.1/pull/nfl/2024-2025-regular/week/${week}/games.json?team=${abbreviation}`,
+      {
+        method: "GET",
+        headers: new Headers({
+          Authorization: `Basic ${authorization}`,
+          "Content-type": "application/json",
+        }),
+      }
+    );
+    const response = await result.json();
+    console.log(response["games"]);
+    return response["games"];
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
@@ -42,6 +62,15 @@ app.get("/team/:abbreviation", async (req, res) => {
   res.send(team);
   console.log(req.params.abbreviation);
 });
+
+/*----------------------------------------*/
+
+app.get("/boxscore/:week/:abbreviation", async (req, res) => {
+  const data = await getBoxScore(req.params.week, req.params.abbreviation);
+  console.log(data);
+  res.send(data);
+});
+/*----------------------------------------*/
 
 await app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

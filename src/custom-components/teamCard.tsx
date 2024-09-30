@@ -2,7 +2,6 @@ import "./teamCard.css";
 import { BoxScore } from "./gameBoxscore";
 export function TeamCard({ data }: any) {
   const teamdata = data;
-  console.log(data);
   return (
     <>
       <div className="container">
@@ -52,7 +51,14 @@ export function TeamCard({ data }: any) {
               </table>
             </div>
             <div className="col">
-              <div className="container">{<BoxScore />}</div>
+              <div className="container">
+                {
+                  <BoxScore
+                    gamesPlayed={teamdata.stats.gamesPlayed}
+                    teamAbbreviation={teamdata.team.abbreviation}
+                  />
+                }
+              </div>
             </div>
           </div>
         </div>

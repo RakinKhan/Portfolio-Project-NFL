@@ -63,7 +63,6 @@ export function TeamSort(props: any) {
               );
             });
           });
-          console.log(allConf);
           return (
             <>
               <div className="row">
