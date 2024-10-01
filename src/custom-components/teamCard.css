@@ -2,3 +2,12 @@
     height:auto;
     width: 100px;
 }
+
+.boxscore-sizing {
+    height: 50px;
+    width:50px;
+}
+
+.matchup-teams {
+    text-align: center;
+}

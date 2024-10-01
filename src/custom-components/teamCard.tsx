@@ -16,10 +16,10 @@ export function TeamCard({ data }: any) {
           </h1>
           <div className="row">
             <div className="col">
+              <div>
+                <h3>2024-2025</h3>
+              </div>
               <ul>
-                <li>
-                  <h3>2024-2025</h3>
-                </li>
                 <li>Stadium: {teamdata.team.homeVenue.name}</li>
                 <li>Conference: {teamdata.conferenceRank.conferenceName}</li>
                 <li>Conference Rank: {teamdata.conferenceRank.rank}</li>

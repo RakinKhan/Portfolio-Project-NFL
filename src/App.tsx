@@ -30,7 +30,7 @@ function App() {
       <div className="App">
         <Navbar />
         {loaded == false && "loading... hello"}
-        <ul>{loaded == true && <TeamSort data={data} />}</ul>
+        <div>{loaded == true && <TeamSort data={data} />}</div>
         <Routes>
           <Route path={`/team/:abbreviation`} element={<Team />}></Route>
         </Routes>

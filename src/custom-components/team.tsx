@@ -38,7 +38,9 @@ export function Team() {
   return (
     <div className="container">
       {loaded.current == false && "loading..."}
-      <ul>{loaded.current == true && <li>{<TeamCard data={data} />}</li>}</ul>
+      <div>
+        {loaded.current == true && <div>{<TeamCard data={data} />}</div>}
+      </div>
     </div>
   );
 }
