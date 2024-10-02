@@ -1,4 +1,5 @@
 import { ScoreTable } from "./scoreTable";
+
 export function ScoreCard({ dataScore }: any) {
   const data = dataScore;
   return (

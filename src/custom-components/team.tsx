@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { TeamCard } from "./teamCard";
+import { TeamCard } from "./team-details/teamCard";
 export function Team() {
   const { abbreviation } = useParams();
   const [data, setData] = useState<any>({});

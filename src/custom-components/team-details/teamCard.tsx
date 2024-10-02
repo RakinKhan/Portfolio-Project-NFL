@@ -1,5 +1,5 @@
-import "./teamCard.css";
-import { BoxScore } from "./gameBoxscore";
+import "./teamCard";
+import { BoxScore } from "../gameBoxscore";
 export function TeamCard({ data }: any) {
   const teamdata = data;
   return (

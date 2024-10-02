@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./teamCard.css";
-import { ScoreCard } from "./scoreCard";
+import { ScoreCard } from "./box-score/scoreCard";
+import { WeekChange } from "./box-score/weekChange";
 export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
   const weeksTotal = gamesPlayed;
   const abbreviation = teamAbbreviation;
@@ -50,6 +51,9 @@ export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
   return (
     <>
       <div>
+        <div>
+          <WeekChange weeks={gameWeek} />
+        </div>
         <div>
           <h3>Week {weeksTotal} Boxscore</h3>
         </div>
