@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
-export function TeamSort(props: any) {
+export function TeamSort({ data }: any) {
   const conferenceSplit: Array<Object> = [];
   const confSort = ["AFC", "NFC"];
+
   const conferenceSort = function (data: any) {
     for (let i = 0; i < confSort.length; i++) {
       const east: any = [];
@@ -40,7 +41,8 @@ export function TeamSort(props: any) {
       });
     }
   };
-  conferenceSort(props.data);
+  conferenceSort(data);
+  console.log(conferenceSplit);
   return (
     <>
       <div className="container text-center">

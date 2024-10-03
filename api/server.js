@@ -35,7 +35,6 @@ async function getBoxScore(week, abbreviation) {
       }
     );
     const response = await result.json();
-    console.log(response["games"]);
     return response["games"];
   } catch (error) {
     console.log(error);

@@ -33,8 +33,7 @@ export function Team() {
   if (oldref.current != abbreviation) {
     loaded.current = false;
   }
-  console.log(abbreviation);
-  console.log(data);
+
   return (
     <div className="container">
       {loaded.current == false && "loading..."}

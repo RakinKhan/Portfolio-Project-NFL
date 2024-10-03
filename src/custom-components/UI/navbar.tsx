@@ -4,9 +4,9 @@ export function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+        <div className="container-fluid container">
           <a className="navbar-brand" href="#">
-            Navbar
+            NFL
           </a>
           <button
             className="navbar-toggler"
@@ -23,17 +23,17 @@ export function Navbar() {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link to="/" className="nav-link">
-                  Home
+                  Team
                 </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Features
+                  Players
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Pricing
+                  About
                 </a>
               </li>
               <li className="nav-item">

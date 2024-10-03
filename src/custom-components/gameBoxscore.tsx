@@ -7,8 +7,10 @@ export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
   const abbreviation = teamAbbreviation;
   const gameWeek = [];
   const [data, setData] = useState<any>({});
+  const [prevWeek, setPrevWeek] = useState(gamesPlayed);
   const loaded = useRef(false);
   const oldref = useRef(abbreviation);
+  const oldweekref = useRef(prevWeek);
   for (let i = 0; i < weeksTotal; i++) {
     gameWeek.push(i + 1);
   }
@@ -16,7 +18,7 @@ export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
   useEffect(() => {
     async function data() {
       const url = await fetch(
-        `http://localhost:8000/boxscore/${weeksTotal}/${abbreviation}`,
+        `http://localhost:8000/boxscore/${prevWeek}/${abbreviation}`,
         {
           method: "GET",
         }
@@ -28,12 +30,16 @@ export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
       data();
       oldref.current = abbreviation;
     }
-  }, [abbreviation]);
+    if (oldweekref.current != prevWeek) {
+      data();
+      oldweekref.current = prevWeek;
+    }
+  }, [abbreviation, prevWeek]);
 
   useEffect(() => {
     async function data() {
       const url = await fetch(
-        `http://localhost:8000/boxscore/${weeksTotal}/${abbreviation}`,
+        `http://localhost:8000/boxscore/${prevWeek}/${abbreviation}`,
         {
           method: "GET",
         }
@@ -44,18 +50,18 @@ export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
     data();
   }, []);
 
-  if (oldref.current != abbreviation) {
+  if (oldref.current != abbreviation || oldweekref.current != prevWeek) {
     loaded.current = false;
   }
-  console.log(data);
+  console.log(prevWeek);
   return (
     <>
       <div>
         <div>
-          <WeekChange weeks={gameWeek} />
+          <WeekChange weeks={gameWeek} changeWeek={setPrevWeek} />
         </div>
         <div>
-          <h3>Week {weeksTotal} Boxscore</h3>
+          <h3>Week {prevWeek} Boxscore</h3>
         </div>
         <div>
           {loaded.current == false && "loading..."}

@@ -1,6 +1,12 @@
-export function WeekChange({ weeks }: any) {
+export function WeekChange({ weeks, changeWeek }: any) {
   const weekDropdown = weeks;
+  console.log(weekDropdown);
   const chooseWeek = [];
+  const weekChangeHandler = (e: any) => {
+    e.preventDefault();
+    const value = e.target.value;
+    return changeWeek(value);
+  };
   console.log(weeks);
   for (let i = 0; i < weekDropdown.length; i++) {
     if (i + 1 !== weekDropdown[weekDropdown.length - 1]) {
@@ -13,11 +19,12 @@ export function WeekChange({ weeks }: any) {
       );
     }
   }
-  console.log(chooseWeek);
   return (
     <div className="text-end">
       <label htmlFor="nfl-week">Week:</label>{" "}
-      <select name="nfl-week">{chooseWeek}</select>
+      <select name="nfl-week" onChange={weekChangeHandler}>
+        {chooseWeek}
+      </select>
     </div>
   );
 }

@@ -14,7 +14,7 @@ import { Navbar } from "./custom-components/UI/navbar";
 function App() {
   const [data, setData] = useState<any[]>([]);
   const [loaded, setLoaded] = useState(false);
-
+  const selectedRef = useRef(false);
   useEffect(() => {
     async function data() {
       const url = await fetch("http://localhost:8000/team", {
@@ -25,13 +25,21 @@ function App() {
     }
     data();
   }, []);
+
   return (
     <>
       <div className="App">
         <Navbar />
         {loaded == false && "loading... hello"}
         <div>{loaded == true && <TeamSort data={data} />}</div>
+        <br></br>
         <Routes>
+          <Route
+            path={"/"}
+            element={
+              "Please select a team to view the latest box score and standings"
+            }
+          ></Route>
           <Route path={`/team/:abbreviation`} element={<Team />}></Route>
         </Routes>
       </div>
