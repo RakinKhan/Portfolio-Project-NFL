@@ -1,7 +1,13 @@
 import "./teamCard";
 import { BoxScore } from "../gameBoxscore";
+import { Link } from "react-router-dom";
 export function TeamCard({ data }: any) {
   const teamdata = data;
+  const state = {
+    name: `${teamdata.team.city} ${teamdata.team.name}`,
+    image: teamdata.team.officialLogoImageSrc,
+    abbreviation: teamdata.team.abbreviation,
+  };
   return (
     <>
       <div className="container">
@@ -60,6 +66,14 @@ export function TeamCard({ data }: any) {
                 }
               </div>
             </div>
+          </div>
+          <div className="row">
+            <Link
+              to={`/${teamdata.team.abbreviation}/roster`}
+              state={{ state }}
+            >
+              <button>View Roster</button>
+            </Link>
           </div>
         </div>
       </div>

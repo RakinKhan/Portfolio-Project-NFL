@@ -11,6 +11,7 @@ import "./App.css";
 import { Team } from "./custom-components/team";
 import { TeamSort } from "./custom-components/teamSorted";
 import { Navbar } from "./custom-components/UI/navbar";
+import { TeamRoster } from "./custom-components/team-roster/teamRoster";
 function App() {
   const [data, setData] = useState<any[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +42,10 @@ function App() {
             }
           ></Route>
           <Route path={`/team/:abbreviation`} element={<Team />}></Route>
+          <Route
+            path={`/:abbreviation/roster`}
+            element={<TeamRoster />}
+          ></Route>
         </Routes>
       </div>
     </>

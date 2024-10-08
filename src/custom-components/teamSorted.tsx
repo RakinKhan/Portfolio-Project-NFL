@@ -42,7 +42,7 @@ export function TeamSort({ data }: any) {
     }
   };
   conferenceSort(data);
-  console.log(conferenceSplit);
+
   return (
     <>
       <div className="container text-center">

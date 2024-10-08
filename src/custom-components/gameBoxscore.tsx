@@ -53,7 +53,7 @@ export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
   if (oldref.current != abbreviation || oldweekref.current != prevWeek) {
     loaded.current = false;
   }
-  console.log(prevWeek);
+
   return (
     <>
       <div>

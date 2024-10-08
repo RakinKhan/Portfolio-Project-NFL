@@ -1,6 +1,6 @@
 export function WeekChange({ weeks, changeWeek }: any) {
   const weekDropdown = weeks;
-  console.log(weekDropdown);
+
   const chooseWeek = [];
   const weekChangeHandler = (e: any) => {
     e.preventDefault();
