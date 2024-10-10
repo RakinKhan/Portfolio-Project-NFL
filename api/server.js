@@ -60,6 +60,24 @@ async function getRoster(abbreviation) {
   }
 }
 
+async function playerStatsWeekly(week, playerName) {
+  try {
+    const result = await fetch(
+      `https://api.mysportsfeeds.com/v2.1/pull/nfl/2024-2025-regular/week/${week}/player_gamelogs.json?player=${playerName}`,
+      {
+        method: "GET",
+        headers: new Headers({
+          Authorization: `Basic ${authorization}`,
+          "Content-type": "application/json",
+        }),
+      }
+    );
+    const response = await result.json();
+    return response["gamelogs"];
+  } catch (error) {
+    console.log(error);
+  }
+}
 /*----------------------------------------*/
 
 app.use((req, res, next) => {
@@ -80,7 +98,6 @@ app.get("/team/:abbreviation", async (req, res) => {
     (team) => team.team.abbreviation === req.params.abbreviation
   );
   res.send(team);
-  console.log(req.params.abbreviation);
 });
 
 /*----------------------------------------*/
@@ -95,6 +112,11 @@ app.get("/boxscore/:week/:abbreviation", async (req, res) => {
 
 app.get("/:abbreviation/roster", async (req, res) => {
   const data = await getRoster(req.params.abbreviation);
+  res.send(data);
+});
+
+app.get("/:playerName/:week", async (req, res) => {
+  const data = await playerStatsWeekly(req.params.week, req.params.playerName);
   console.log(data);
   res.send(data);
 });

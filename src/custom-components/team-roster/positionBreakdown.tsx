@@ -1,4 +1,7 @@
+import { PlayerCardModal } from "../player-card/playerCardModal";
+import { useState } from "react";
 export function PositionBreakdown({ players }: any) {
+  const [isOpen, setIsOpen] = useState({ open: false, player: {} });
   const positionList: Array<string> = [];
   const positionalGrouping: Array<Object> = [];
   const playersList = players.map((player: any) => {
@@ -25,9 +28,9 @@ export function PositionBreakdown({ players }: any) {
       players: filtered,
     });
   });
-  console.log(positionalGrouping);
+  console.log(isOpen);
   return (
-    <>
+    <div>
       {positionalGrouping.map((group: any) => {
         return (
           <div className="container row">
@@ -36,7 +39,16 @@ export function PositionBreakdown({ players }: any) {
               {group.players.map((player: any) => {
                 return (
                   <div className="float-start" style={{ padding: "0 10px" }}>
-                    {player.playerName}
+                    <button
+                      onClick={() =>
+                        setIsOpen({
+                          open: true,
+                          player: player,
+                        })
+                      }
+                    >
+                      {player.playerName}
+                    </button>
                   </div>
                 );
               })}
@@ -44,6 +56,12 @@ export function PositionBreakdown({ players }: any) {
           </div>
         );
       })}
-    </>
+      {isOpen.open && (
+        <PlayerCardModal
+          open={isOpen}
+          onClose={() => setIsOpen({ open: false, player: {} })}
+        ></PlayerCardModal>
+      )}
+    </div>
   );
 }
