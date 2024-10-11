@@ -1,10 +1,31 @@
 import { PlayerCardModal } from "../player-card/playerCardModal";
 import { useState } from "react";
+
+const categories = [
+  "Passing",
+  "Rushing",
+  "Receiving",
+  "Tackles",
+  "Interceptions",
+  "Fumbles",
+  "Kickoff Returns",
+  "Punt Returns",
+  "Field Goals",
+  "Kickoffs",
+  "Punting",
+  "2PT",
+  "Tackles",
+  "Snap Counts",
+  "Fumbles",
+];
+
 export function PositionBreakdown({ players }: any) {
   const [isOpen, setIsOpen] = useState({ open: false, player: {} });
   const positionList: Array<string> = [];
   const positionalGrouping: Array<Object> = [];
-  const playersList = players.map((player: any) => {
+  const playerAll = players["statsTotal"];
+  const statReferences = players["references"];
+  const playersList = playerAll.map((player: any) => {
     return {
       playerName: `${player.player.firstName} ${player.player.lastName}`,
       image: player.player.officialImageSrc,
@@ -60,6 +81,7 @@ export function PositionBreakdown({ players }: any) {
         <PlayerCardModal
           open={isOpen}
           onClose={() => setIsOpen({ open: false, player: {} })}
+          references={statReferences}
         ></PlayerCardModal>
       )}
     </div>

@@ -1,6 +1,7 @@
 import "./playerCardModal.css";
 import ReactDOM from "react-dom";
-
+import { PlayerCardLeft } from "./pc-left/playerCardLeft";
+import { PlayerCardRight } from "./pc-right/playerCardRight";
 const modalStyles = {
   top: "50%",
   left: "50%",
@@ -8,15 +9,47 @@ const modalStyles = {
   backgroundColor: "#FFF",
   padding: "50px",
   zIndex: 1000,
+  border: "1px solid black",
 };
-export function PlayerCardModal({ open, onClose }: any) {
-  if (!open) return null;
 
+const overlayStyles = {
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: "rgba(0, 0, 0, 0.7)",
+  zIndex: 1000,
+};
+export function PlayerCardModal({ open, onClose, references }: any) {
+  if (!open) return null;
+  console.log(open.player.stats);
   return (
     <>
-      <div style={modalStyles} className="position">
-        <button onClick={onClose}>hi</button>
-        {open.player.playerName}
+      <div style={overlayStyles} className="position-fixed" />
+      <div style={modalStyles} className="position-fixed container">
+        <div className="row">
+          <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button
+              onClick={onClose}
+              className="btn btn-primary me-md-2"
+              style={{ width: "fit-content" }}
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+        <div className="row">
+          <h1>{open.player.playerName}</h1>
+        </div>
+        <div className="row">
+          <div className="col">
+            <PlayerCardLeft player={open.player} />
+          </div>
+          <div className="col">
+            <PlayerCardRight playerStats={open.player.stats} />
+          </div>
+        </div>
       </div>
     </>
   );

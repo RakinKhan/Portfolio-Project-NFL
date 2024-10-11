@@ -54,7 +54,11 @@ async function getRoster(abbreviation) {
       }
     );
     const response = await result.json();
-    return response["playerStatsTotals"];
+    const responseFiltered = {
+      statsTotal: response["playerStatsTotals"],
+      references: response["references"]["playerStatReferences"],
+    };
+    return responseFiltered;
   } catch (error) {
     console.log(error);
   }
