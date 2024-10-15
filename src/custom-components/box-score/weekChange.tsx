@@ -7,7 +7,6 @@ export function WeekChange({ weeks, changeWeek }: any) {
     const value = e.target.value;
     return changeWeek(value);
   };
-  console.log(weeks);
   for (let i = 0; i < weekDropdown.length; i++) {
     if (i + 1 !== weekDropdown[weekDropdown.length - 1]) {
       chooseWeek.push(<option value={i + 1}>{i + 1}</option>);

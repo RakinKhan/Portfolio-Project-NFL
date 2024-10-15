@@ -49,18 +49,20 @@ export function PositionBreakdown({ players }: any) {
       players: filtered,
     });
   });
-  console.log(isOpen);
+
   return (
     <div>
       {positionalGrouping.map((group: any) => {
         return (
           <div className="container row">
             <div className="col">
-              <h6 className="float-start">{group.position} -</h6>
+              <div className="float-start">{group.position} -</div>
               {group.players.map((player: any) => {
                 return (
-                  <div className="float-start" style={{ padding: "0 10px" }}>
+                  <div className="float-start">
                     <button
+                      className="btn"
+                      style={{ padding: "0 5px", height: "fit-content" }}
                       onClick={() =>
                         setIsOpen({
                           open: true,

@@ -32,7 +32,6 @@ export function PlayerCardModal({ open, onClose, references }: any) {
             <button
               onClick={onClose}
               className="btn btn-primary me-md-2"
-              style={{ width: "fit-content" }}
               type="button"
             >
               Close
@@ -47,7 +46,10 @@ export function PlayerCardModal({ open, onClose, references }: any) {
             <PlayerCardLeft player={open.player} />
           </div>
           <div className="col">
-            <PlayerCardRight playerStats={open.player.stats} />
+            <PlayerCardRight
+              playerStats={open.player.stats}
+              references={references}
+            />
           </div>
         </div>
       </div>

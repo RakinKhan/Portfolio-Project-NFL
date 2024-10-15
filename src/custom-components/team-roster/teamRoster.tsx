@@ -38,7 +38,7 @@ export function TeamRoster() {
   if (oldref.current != abbreviation) {
     loaded.current = false;
   }
-  console.log(data);
+
   return (
     <div>
       <div className="container">
