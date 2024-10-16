@@ -1,5 +1,6 @@
-import { platform } from "os";
-
+import { PlayerStatsDisplay } from "./playerStatsDisplay";
+import { useState } from "react";
+import { PlayerWeekChange } from "./playerWeekChange";
 const categories = [
   "Passing",
   "Rushing",
@@ -19,6 +20,10 @@ const categories = [
 ];
 
 export function PlayerCardRight({ playerStats, references }: any) {
+  const [statSelected, setStatSelected] = useState({
+    name: "none",
+    grouping: "please select a group",
+  });
   const listOfCategories: any = [];
   const grouped: any = [];
   const groupedOrganized: any = [];
@@ -81,9 +86,6 @@ export function PlayerCardRight({ playerStats, references }: any) {
         category: category.categoryFiltered,
         stats: statsList[`${categoryName}`].stats,
       });
-      console.log("Yes", `${categoryName}`);
-    } else {
-      console.log("NO", `${categoryName}`);
     }
   });
 
@@ -102,26 +104,34 @@ export function PlayerCardRight({ playerStats, references }: any) {
       grouping: finalGrouping,
     });
   });
-
   console.log(groupedOrganized);
   return (
     <>
       <div>
         <h6>Season Stats</h6>
       </div>
-      <div>Games Played: {playerStats.gamesPlayed}</div>
+      <div className="row">
+        <div>Games Played: {playerStats.gamesPlayed}</div>
+        <PlayerWeekChange played={playerStats.gamesPlayed} />
+      </div>
       <div className="container-fluid">
         <div
           className="btn-group-vertical float-start row"
           style={{ width: "fit-content" }}
         >
           {groupedOrganized.map((group: any) => (
-            <button type="button" className="btn">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => setStatSelected(group)}
+            >
               {group.name}
             </button>
           ))}
         </div>
-        <div className="row">select a stat</div>
+        <div className="row">
+          <PlayerStatsDisplay selected={statSelected} />
+        </div>
       </div>
     </>
   );

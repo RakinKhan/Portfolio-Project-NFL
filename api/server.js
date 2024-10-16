@@ -121,7 +121,6 @@ app.get("/:abbreviation/roster", async (req, res) => {
 
 app.get("/:playerName/:week", async (req, res) => {
   const data = await playerStatsWeekly(req.params.week, req.params.playerName);
-  console.log(data);
   res.send(data);
 });
 
