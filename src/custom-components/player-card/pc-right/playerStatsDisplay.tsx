@@ -7,6 +7,13 @@ export function PlayerStatsDisplay({ selected }: any) {
       </>
     );
   }
+  if (selected.name == "DNP") {
+    return (
+      <>
+        <div>{selected.grouping}</div>
+      </>
+    );
+  }
   return (
     <>
       <table className="table table-bordered table-striped">

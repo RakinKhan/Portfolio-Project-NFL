@@ -108,7 +108,7 @@ app.get("/team/:abbreviation", async (req, res) => {
 
 app.get("/boxscore/:week/:abbreviation", async (req, res) => {
   const data = await getBoxScore(req.params.week, req.params.abbreviation);
-  console.log(data);
+
   res.send(data);
 });
 

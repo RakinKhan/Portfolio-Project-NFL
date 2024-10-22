@@ -31,11 +31,12 @@ export function PlayerCardRight({
   });
   const playerStatsOriginal = playerStats;
   const [playerStatsChange, setPlayerStats] = useState(playerStats);
-  const [week, setWeek] = useState();
+  const [week, setWeek] = useState("all");
   const listOfCategories: any = [];
   const grouped: any = [];
   const groupedOrganized: any = [];
-
+  const loaded = useRef(false);
+  const isDNP = useRef(1);
   const statsList: any = {
     Passing: {
       stats: playerStatsChange.passing,
@@ -114,8 +115,52 @@ export function PlayerCardRight({
     });
   });
 
+  useEffect(() => {
+    console.log(week);
+    async function data() {
+      const url = await fetch(
+        `http://localhost:8000/${name.firstName}-${name.lastName}/${week}`,
+        {
+          method: "GET",
+        }
+      ).then((response) => response.json());
+      if (url[0]?.stats === undefined) {
+        setPlayerStats("DNP");
+        setStatSelected({
+          name: "DNP",
+          grouping: "Did not Participate",
+        });
+        isDNP.current = 2;
+      }
+      if (url[0]?.stats) {
+        setPlayerStats(url[0].stats);
+        setStatSelected({
+          name: "none",
+          grouping: "please select a group",
+        });
+        isDNP.current = 3;
+      }
+      loaded.current = true;
+    }
+    if (week != "all") {
+      loaded.current = false;
+      data();
+    }
+    if (week === "all") {
+      loaded.current = false;
+      isDNP.current = 3;
+      setPlayerStats(playerStats);
+      setStatSelected({
+        name: "none",
+        grouping: "please select a group",
+      });
+    }
+  }, [week]);
+
+  if (playerStatsOriginal === playerStatsChange) {
+    loaded.current = true;
+  }
   console.log(playerStatsChange);
-  console.log(playerStats);
   return (
     <>
       <div>
@@ -141,7 +186,11 @@ export function PlayerCardRight({
           ))}
         </div>
         <div className="row">
-          <PlayerStatsDisplay selected={statSelected} />
+          {loaded.current == false && "loading..."}
+          {isDNP.current == 2 && <PlayerStatsDisplay selected={statSelected} />}
+          {loaded.current == true && isDNP.current == 3 && (
+            <PlayerStatsDisplay selected={statSelected} />
+          )}
         </div>
       </div>
     </>
