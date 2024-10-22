@@ -1,5 +1,5 @@
 import { PlayerStatsDisplay } from "./playerStatsDisplay";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { PlayerWeekChange } from "./playerWeekChange";
 const categories = [
   "Passing",
@@ -19,53 +19,62 @@ const categories = [
   "Fumbles",
 ];
 
-export function PlayerCardRight({ playerStats, references }: any) {
+export function PlayerCardRight({
+  name,
+  playerStats,
+  references,
+  weeksPlayedTeam,
+}: any) {
   const [statSelected, setStatSelected] = useState({
     name: "none",
     grouping: "please select a group",
   });
+  const playerStatsOriginal = playerStats;
+  const [playerStatsChange, setPlayerStats] = useState(playerStats);
+  const [week, setWeek] = useState();
   const listOfCategories: any = [];
   const grouped: any = [];
   const groupedOrganized: any = [];
+
   const statsList: any = {
     Passing: {
-      stats: playerStats.passing,
+      stats: playerStatsChange.passing,
     },
     Rushing: {
-      stats: playerStats.rushing,
+      stats: playerStatsChange.rushing,
     },
     Receiving: {
-      stats: playerStats.receiving,
+      stats: playerStatsChange.receiving,
     },
     Interceptions: {
-      stats: playerStats.interceptions,
+      stats: playerStatsChange.interceptions,
     },
     "Kickoff Returns": {
-      stats: playerStats.kickoffReturns,
+      stats: playerStatsChange.kickoffReturns,
     },
     "Punt Returns": {
-      stats: playerStats.puntReturns,
+      stats: playerStatsChange.puntReturns,
     },
     "Field Goals": {
-      stats: playerStats.FieldGoals,
+      stats: playerStatsChange.FieldGoals,
     },
     Kickoffs: {
-      stats: playerStats.kickoffs,
+      stats: playerStatsChange.kickoffs,
     },
     Punting: {
-      stats: playerStats.punting,
+      stats: playerStatsChange.punting,
     },
     "2PT": {
-      stats: playerStats.twoPointAttempts,
+      stats: playerStatsChange.twoPointAttempts,
     },
     Tackles: {
-      stats: playerStats.tackles,
+      stats: playerStatsChange.tackles,
     },
     "Snap Counts": {
-      stats: playerStats.snapCounts,
+      stats: playerStatsChange.snapCounts,
     },
     Fumbles: {
-      stats: playerStats.fumbles,
+      stats: playerStatsChange.fumbles,
     },
   };
 
@@ -104,7 +113,9 @@ export function PlayerCardRight({ playerStats, references }: any) {
       grouping: finalGrouping,
     });
   });
-  console.log(groupedOrganized);
+
+  console.log(playerStatsChange);
+  console.log(playerStats);
   return (
     <>
       <div>
@@ -112,7 +123,7 @@ export function PlayerCardRight({ playerStats, references }: any) {
       </div>
       <div className="row">
         <div>Games Played: {playerStats.gamesPlayed}</div>
-        <PlayerWeekChange played={playerStats.gamesPlayed} />
+        <PlayerWeekChange played={weeksPlayedTeam} changeWeek={setWeek} />
       </div>
       <div className="container-fluid">
         <div

@@ -60,7 +60,14 @@ export function TeamRoster() {
         {loaded.current == false && "loading..."}
         <div>
           {loaded.current == true && (
-            <div>{<PositionBreakdown players={data} />}</div>
+            <div>
+              {
+                <PositionBreakdown
+                  players={data}
+                  weeksPlayedTeam={dataTeam.state.weeksplayed}
+                />
+              }
+            </div>
           )}
         </div>
       </div>

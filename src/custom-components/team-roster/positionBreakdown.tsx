@@ -19,7 +19,7 @@ const categories = [
   "Fumbles",
 ];
 
-export function PositionBreakdown({ players }: any) {
+export function PositionBreakdown({ players, weeksPlayedTeam }: any) {
   const [isOpen, setIsOpen] = useState({ open: false, player: {} });
   const positionList: Array<string> = [];
   const positionalGrouping: Array<Object> = [];
@@ -32,6 +32,8 @@ export function PositionBreakdown({ players }: any) {
       position: player.player.primaryPosition,
       jersey: player.player.jerseyNumber,
       stats: player.stats,
+      playerNameFirst: player.player.firstName,
+      playerNameLast: player.player.lastName,
     };
   });
   playersList.forEach((player: any) => {
@@ -84,6 +86,7 @@ export function PositionBreakdown({ players }: any) {
           open={isOpen}
           onClose={() => setIsOpen({ open: false, player: {} })}
           references={statReferences}
+          weeksPlayedTeam={weeksPlayedTeam}
         ></PlayerCardModal>
       )}
     </div>

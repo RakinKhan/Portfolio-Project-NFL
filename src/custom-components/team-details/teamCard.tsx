@@ -7,6 +7,7 @@ export function TeamCard({ data }: any) {
     name: `${teamdata.team.city} ${teamdata.team.name}`,
     image: teamdata.team.officialLogoImageSrc,
     abbreviation: teamdata.team.abbreviation,
+    weeksplayed: teamdata.stats.gamesPlayed,
   };
   return (
     <>

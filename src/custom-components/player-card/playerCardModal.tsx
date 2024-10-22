@@ -20,9 +20,14 @@ const overlayStyles = {
   backgroundColor: "rgba(0, 0, 0, 0.7)",
   zIndex: 1000,
 };
-export function PlayerCardModal({ open, onClose, references }: any) {
+export function PlayerCardModal({
+  open,
+  onClose,
+  references,
+  weeksPlayedTeam,
+}: any) {
   if (!open) return null;
-  console.log(open.player.stats);
+
   return (
     <>
       <div style={overlayStyles} className="position-fixed" />
@@ -47,8 +52,13 @@ export function PlayerCardModal({ open, onClose, references }: any) {
           </div>
           <div className="col">
             <PlayerCardRight
+              name={{
+                firstName: open.player.playerNameFirst.replace(/[ '.-]/g, ""),
+                lastName: open.player.playerNameLast.replace(/[ '.-]/g, ""),
+              }}
               playerStats={open.player.stats}
               references={references}
+              weeksPlayedTeam={weeksPlayedTeam}
             />
           </div>
         </div>
