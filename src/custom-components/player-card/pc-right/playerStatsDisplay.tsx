@@ -2,14 +2,14 @@
 
 export function PlayerStatsDisplay({ selected }: any) {
   const grouping = selected.grouping;
-  if (selected.name == "none") {
+  if (selected.name === "none") {
     return (
       <>
         <div>{selected.grouping}</div>
       </>
     );
   }
-  if (selected.name == "DNP") {
+  if (selected.name === "DNP") {
     return (
       <>
         <div>{selected.grouping}</div>

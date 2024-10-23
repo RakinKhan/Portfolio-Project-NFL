@@ -7,7 +7,7 @@ Left side of the component shows basic team standings (conference and division) 
 Right side shows the latest matchup box score, broken down into quarters and final score. Can be changed to see scores from previous weeks.
 Bottom of component has button to the teams roster.
 */
-export function TeamCard({ data }: any) {
+export function TeamCard({ data, totalweeks }: any) {
   const teamdata = data;
   const state = {
     name: `${teamdata.team.city} ${teamdata.team.name}`,
@@ -15,6 +15,7 @@ export function TeamCard({ data }: any) {
     abbreviation: teamdata.team.abbreviation,
     weeksplayed: teamdata.stats.gamesPlayed,
   };
+  console.log(teamdata);
   return (
     <>
       <div className="container">
@@ -69,6 +70,7 @@ export function TeamCard({ data }: any) {
                   <BoxScore
                     gamesPlayed={teamdata.stats.gamesPlayed}
                     teamAbbreviation={teamdata.team.abbreviation}
+                    totalweeks={totalweeks}
                   />
                 }
               </div>

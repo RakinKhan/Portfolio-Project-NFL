@@ -22,7 +22,7 @@ export function TeamRoster() {
       setData(url);
       loaded.current = true;
     }
-    if (oldref.current != abbreviation) {
+    if (oldref.current !== abbreviation) {
       data();
       oldref.current = abbreviation;
     }
@@ -38,7 +38,7 @@ export function TeamRoster() {
     }
     data();
   }, []);
-  if (oldref.current != abbreviation) {
+  if (oldref.current !== abbreviation) {
     loaded.current = false;
   }
 
@@ -60,9 +60,9 @@ export function TeamRoster() {
         </div>
       </div>
       <div className="container">
-        {loaded.current == false && "loading..."}
+        {loaded.current === false && "loading..."}
         <div>
-          {loaded.current == true && (
+          {loaded.current === true && (
             <div>
               {
                 <PositionBreakdown

@@ -30,7 +30,7 @@ export function PositionBreakdown({ players, weeksPlayedTeam }: any) {
 
   positionList.forEach((position: any) => {
     const filtered = playersList.filter(
-      (positionPlayer: any) => positionPlayer.position == position
+      (positionPlayer: any) => positionPlayer.position === position
     );
     positionalGrouping.push({
       position: position,

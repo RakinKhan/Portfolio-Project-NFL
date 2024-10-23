@@ -168,7 +168,7 @@ export function PlayerCardRight({
   if (playerStatsOriginal === playerStatsChange) {
     loaded.current = true;
   }
-  console.log(playerStatsChange);
+
   return (
     <>
       <div>

@@ -15,7 +15,7 @@ import { TeamRoster } from "./custom-components/team-roster/teamRoster";
 function App() {
   const [data, setData] = useState<any[]>([]);
   const [loaded, setLoaded] = useState(false);
-  const selectedRef = useRef(false);
+  const totalweeks = useRef(0);
   useEffect(() => {
     async function data() {
       const url = await fetch("http://localhost:8000/team", {
@@ -26,7 +26,10 @@ function App() {
     }
     data();
   }, []);
-
+  if (data) {
+    const newArray = data.map((weeks: any) => weeks.stats.gamesPlayed);
+    totalweeks.current = Math.max(...Array.from(new Set(newArray)));
+  }
   return (
     <>
       <div className="App">
@@ -41,7 +44,10 @@ function App() {
               "Please select a team to view the latest box score and standings"
             }
           ></Route>
-          <Route path={`/team/:abbreviation`} element={<Team />}></Route>
+          <Route
+            path={`/team/:abbreviation`}
+            element={<Team totalweeks={totalweeks.current} />}
+          ></Route>
           <Route
             path={`/:abbreviation/roster`}
             element={<TeamRoster />}
