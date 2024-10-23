@@ -3,6 +3,9 @@ import "../teamCard.css";
 import { useParams, useLocation } from "react-router-dom";
 import { PositionBreakdown } from "./positionBreakdown";
 
+/* component is used to fetch the entire roster for a selected team. 
+The fetched roster data is then passed to the PositionBreakdown.tsx component to be processed and made viewable.*/
+
 export function TeamRoster() {
   const { abbreviation } = useParams();
   const [data, setData] = useState<any>({});

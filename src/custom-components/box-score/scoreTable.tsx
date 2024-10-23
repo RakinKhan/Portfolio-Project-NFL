@@ -1,3 +1,5 @@
+/* Component displays the box score in table format, by quarters (Q1-Q4), and lastly the final score. */
+
 export function ScoreTable({ dataScore }: any) {
   const data = dataScore;
   return (

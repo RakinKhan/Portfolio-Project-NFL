@@ -1,3 +1,4 @@
+/* Component creates a dropdown menu for players to select a specific weeks box score. */
 export function WeekChange({ weeks, changeWeek }: any) {
   const weekDropdown = weeks;
 

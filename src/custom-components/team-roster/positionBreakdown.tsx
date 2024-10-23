@@ -1,24 +1,10 @@
 import { PlayerCardModal } from "../player-card/playerCardModal";
 import { useState } from "react";
 
-const categories = [
-  "Passing",
-  "Rushing",
-  "Receiving",
-  "Tackles",
-  "Interceptions",
-  "Fumbles",
-  "Kickoff Returns",
-  "Punt Returns",
-  "Field Goals",
-  "Kickoffs",
-  "Punting",
-  "2PT",
-  "Tackles",
-  "Snap Counts",
-  "Fumbles",
-];
-
+/* 
+Component groups the players by their position and makes each player into a clickable button. 
+When players name is clicked a modal is opened to show the specific players info and stats.
+*/
 export function PositionBreakdown({ players, weeksPlayedTeam }: any) {
   const [isOpen, setIsOpen] = useState({ open: false, player: {} });
   const positionList: Array<string> = [];

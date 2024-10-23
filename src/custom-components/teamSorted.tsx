@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+/* Sort and group all teams based on conference and division */
+
 export function TeamSort({ data }: any) {
   const conferenceSplit: Array<Object> = [];
   const confSort = ["AFC", "NFC"];

@@ -1,6 +1,12 @@
 import "./teamCard";
 import { BoxScore } from "../gameBoxscore";
 import { Link } from "react-router-dom";
+
+/* 
+Left side of the component shows basic team standings (conference and division) and record.
+Right side shows the latest matchup box score, broken down into quarters and final score. Can be changed to see scores from previous weeks.
+Bottom of component has button to the teams roster.
+*/
 export function TeamCard({ data }: any) {
   const teamdata = data;
   const state = {

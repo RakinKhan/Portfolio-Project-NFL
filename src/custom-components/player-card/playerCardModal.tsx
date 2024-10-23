@@ -2,6 +2,11 @@ import "./playerCardModal.css";
 import ReactDOM from "react-dom";
 import { PlayerCardLeft } from "./pc-left/playerCardLeft";
 import { PlayerCardRight } from "./pc-right/playerCardRight";
+
+/* Modal card for when a specific player on a teams roster is selected.
+Left side is for basic player information.
+Right side is for player stats.
+*/
 const modalStyles = {
   top: "50%",
   left: "50%",

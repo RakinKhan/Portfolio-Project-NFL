@@ -1,6 +1,14 @@
 import { PlayerStatsDisplay } from "./playerStatsDisplay";
 import { useEffect, useState, useRef } from "react";
 import { PlayerWeekChange } from "./playerWeekChange";
+
+/* 
+Component displays the selected player stats. Initially the total stats for the season will be viewable.
+Given theamount of stats available, stats are sorted into categories and will only be viewable once a 
+category has been picked. Due to player positions, certain statistical categories will not apply and so those
+categories will be ommitted from selection. For situations where a player did not play, a "Did Not Participate"
+notice will be displayed on screen.
+*/
 const categories = [
   "Passing",
   "Rushing",

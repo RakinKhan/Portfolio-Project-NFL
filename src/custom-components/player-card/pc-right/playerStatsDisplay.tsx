@@ -1,3 +1,5 @@
+/* Displays stats for the selected category in table format. */
+
 export function PlayerStatsDisplay({ selected }: any) {
   const grouping = selected.grouping;
   if (selected.name == "none") {

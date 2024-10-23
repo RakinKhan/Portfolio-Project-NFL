@@ -1,3 +1,5 @@
+/* Dropdown to change week so you can see the player stats for that weeks matchup. */
+
 export function PlayerWeekChange({ played, changeWeek }: any) {
   const weekDropdown = [...Array(played)];
   const chooseWeek = [];

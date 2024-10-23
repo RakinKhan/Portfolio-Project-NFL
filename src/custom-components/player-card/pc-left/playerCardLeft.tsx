@@ -1,3 +1,4 @@
+/* Shows player image (if available, the position they play, and jersey number. */
 export function PlayerCardLeft({ player }: any) {
   return (
     <>

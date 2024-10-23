@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./teamCard.css";
 import { ScoreCard } from "./box-score/scoreCard";
 import { WeekChange } from "./box-score/weekChange";
+
+/* Shows the box score of a selected team and their opponents. Initially will show the box score of the latest matchup. dropdown will let you see previous box scores during the season */
 export function BoxScore({ gamesPlayed, teamAbbreviation }: any) {
   const weeksTotal = gamesPlayed;
   const abbreviation = teamAbbreviation;

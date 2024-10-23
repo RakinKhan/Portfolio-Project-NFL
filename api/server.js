@@ -3,6 +3,7 @@ import authorization from "./api-config.js";
 const app = express();
 const port = 8000;
 
+/*  get stats request for every single team*/
 async function getData() {
   try {
     const result = await fetch(
@@ -22,6 +23,7 @@ async function getData() {
   }
 }
 
+/* get box score based on team and week*/
 async function getBoxScore(week, abbreviation) {
   try {
     const result = await fetch(
@@ -41,6 +43,7 @@ async function getBoxScore(week, abbreviation) {
   }
 }
 
+/*  Get roster for entire team and their total seasonal stats */
 async function getRoster(abbreviation) {
   try {
     const result = await fetch(
@@ -64,6 +67,7 @@ async function getRoster(abbreviation) {
   }
 }
 
+/*  get a players stat for a specific week of the season */
 async function playerStatsWeekly(week, playerName) {
   try {
     const result = await fetch(

@@ -1,5 +1,10 @@
 import { ScoreTable } from "./scoreTable";
 
+/* 
+Component shows the matchup of the teams of any given week (image of teams along with location (home or away)).
+ScoreTable.tsx component is passed the actual data which will display the score.
+*/
+
 export function ScoreCard({ dataScore }: any) {
   const data = dataScore;
   return (

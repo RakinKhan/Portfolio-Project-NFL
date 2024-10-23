@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { TeamCard } from "./team-details/teamCard";
+
+/* component fetches data for a selected team. the fetched team data is passed to TeamCard.tsx component for further processing to display. */
 export function Team() {
   const { abbreviation } = useParams();
   const [data, setData] = useState<any>({});
