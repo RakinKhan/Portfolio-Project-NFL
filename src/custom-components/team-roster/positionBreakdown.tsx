@@ -49,8 +49,12 @@ export function PositionBreakdown({ players, weeksPlayedTeam }: any) {
                 return (
                   <div className="float-start">
                     <button
-                      className="btn"
-                      style={{ padding: "0 5px", height: "fit-content" }}
+                      className="btn btn-dark"
+                      style={{
+                        padding: "0 5px",
+                        height: "fit-content",
+                        margin: "1px 2.5px",
+                      }}
                       onClick={() =>
                         setIsOpen({
                           open: true,

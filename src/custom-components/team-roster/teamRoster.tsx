@@ -46,7 +46,7 @@ export function TeamRoster() {
     <div>
       <div className="container">
         <div className="row">
-          <h1>
+          <h1 className="teamheadstyling">
             {dataTeam.state.name}
             <img
               src={dataTeam.state.image}

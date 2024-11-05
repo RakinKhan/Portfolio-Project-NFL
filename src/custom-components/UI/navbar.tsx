@@ -5,7 +5,7 @@ export function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid container">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             NFL
           </a>
           <button
