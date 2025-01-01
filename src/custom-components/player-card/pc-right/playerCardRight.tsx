@@ -1,7 +1,7 @@
 import { PlayerStatsDisplay } from "./playerStatsDisplay";
 import { useEffect, useState, useRef } from "react";
 import { PlayerWeekChange } from "./playerWeekChange";
-
+import "./playerCardRight.css";
 /* 
 Component displays the selected player stats. Initially the total stats for the season will be viewable.
 Given theamount of stats available, stats are sorted into categories and will only be viewable once a 
@@ -178,22 +178,19 @@ export function PlayerCardRight({
         <div>Games Played: {playerStats.gamesPlayed}</div>
         <PlayerWeekChange played={weeksPlayedTeam} changeWeek={setWeek} />
       </div>
-      <div className="container-fluid">
-        <div
-          className="btn-group-vertical float-start row"
-          style={{ width: "fit-content" }}
-        >
+      <div className="container-fluid d-flex column-gap-3">
+        <div className="btn-group-vertical row p-2">
           {groupedOrganized.map((group: any) => (
             <button
               type="button"
-              className="btn"
+              className="btn button-style"
               onClick={() => setStatSelected(group)}
             >
               {group.name}
             </button>
           ))}
         </div>
-        <div className="row">
+        <div className="row p-2 flex-grow-1">
           {loaded.current == false && "loading..."}
           {isDNP.current == 2 && <PlayerStatsDisplay selected={statSelected} />}
           {loaded.current == true && isDNP.current == 3 && (

@@ -5,7 +5,7 @@ import { WeekChange } from "./box-score/weekChange";
 
 /* Shows the box score of a selected team and their opponents. Initially will show the box score of the latest matchup. dropdown will let you see previous box scores during the season */
 export function BoxScore({ gamesPlayed, teamAbbreviation, totalweeks }: any) {
-  const weeksTotal = totalweeks;
+  const [weeksTotal, setWeeksTotal] = useState<any>(totalweeks);
   const abbreviation = teamAbbreviation;
   const gameWeek = [];
   const [data, setData] = useState<any>({});
@@ -71,9 +71,28 @@ export function BoxScore({ gamesPlayed, teamAbbreviation, totalweeks }: any) {
       }
       loaded.current = true;
     }
-    data();
-  }, []);
 
+    async function check() {
+      const url = await fetch(
+        `http://localhost:8000/boxscore/${prevWeek + 1}/${abbreviation}`,
+        {
+          method: "GET",
+        }
+      ).then((response) => response.json());
+      if (url[0]?.score) {
+        setWeeksTotal(prevWeek + 1);
+        setData(url);
+        const week = prevWeek + 1;
+        setPrevWeek(week);
+        isByeWeek.current = 1;
+      } else {
+        data();
+      }
+      loaded.current = true;
+    }
+    check();
+  }, []);
+  console.log(gameWeek);
   if (oldref.current != abbreviation || oldweekref.current != prevWeek) {
     loaded.current = false;
   }
