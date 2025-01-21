@@ -37,7 +37,6 @@ export function PositionBreakdown({ players, weeksPlayedTeam }: any) {
       players: filtered,
     });
   });
-
   return (
     <div>
       {positionalGrouping.map((group: any) => {

@@ -30,6 +30,7 @@ function App() {
     const newArray = data.map((weeks: any) => weeks.stats.gamesPlayed);
     totalweeks.current = Math.max(...Array.from(new Set(newArray)));
   }
+  console.log(totalweeks);
   return (
     <>
       <div className="App">

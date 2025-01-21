@@ -1,3 +1,5 @@
 /terraform
 /api
 /node_modules
+/nginx-server
+/main.tf

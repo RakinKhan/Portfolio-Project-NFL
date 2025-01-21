@@ -39,6 +39,7 @@ export function PlayerCardRight({
   });
   const playerStatsOriginal = playerStats;
   const [playerStatsChange, setPlayerStats] = useState(playerStats);
+  const [totalWeeksPlayed, setTotalWeeksPlayed] = useState(weeksPlayedTeam);
   const [week, setWeek] = useState("all");
   const listOfCategories: any = [];
   const grouped: any = [];
@@ -150,6 +151,7 @@ export function PlayerCardRight({
       }
       loaded.current = true;
     }
+
     if (week != "all") {
       loaded.current = false;
       data();
@@ -157,6 +159,7 @@ export function PlayerCardRight({
     if (week === "all") {
       loaded.current = false;
       isDNP.current = 3;
+
       setPlayerStats(playerStats);
       setStatSelected({
         name: "none",
@@ -168,7 +171,7 @@ export function PlayerCardRight({
   if (playerStatsOriginal === playerStatsChange) {
     loaded.current = true;
   }
-
+  console.log(totalWeeksPlayed);
   return (
     <>
       <div>

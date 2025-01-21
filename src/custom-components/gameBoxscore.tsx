@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import "./teamCard.css";
 import { ScoreCard } from "./box-score/scoreCard";
 import { WeekChange } from "./box-score/weekChange";

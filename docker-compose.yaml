@@ -1,0 +1,13 @@
+services:
+  apiserver:
+    image: "rakinkhan/api-server:2024.12.25"
+    ports:
+      - "8000:8000"
+  frontend:
+    image: "frontend:2025.01.20"
+    depends_on:
+      - apiserver
+    ports:
+      - "3000:3000"
+# docker-compose up
+# docker-compose down
