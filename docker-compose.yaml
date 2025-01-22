@@ -1,13 +1,18 @@
 services:
   apiserver:
+    container_name: apiserver
     image: "rakinkhan/api-server:2024.12.25"
     ports:
       - "8000:8000"
   frontend:
-    image: "frontend:2025.01.20"
+    container_name: frontend
+    image: "rakinkhan/nfl-frontend:2025.01.22"
     depends_on:
       - apiserver
     ports:
-      - "3000:3000"
-# docker-compose up
+      - "3000:80"
+    volumes:
+      - "C:/Users/Rakin/Documents/WCD-Projects/portfolio-app/src:/app/src:rw"
+# docker-compose up -d
 # docker-compose down
+

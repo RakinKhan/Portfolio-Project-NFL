@@ -21,12 +21,10 @@ export function BoxScore({ gamesPlayed, teamAbbreviation, totalweeks }: any) {
   console.log(gameWeek);
   useEffect(() => {
     async function data() {
-      const url = await fetch(
-        `http://localhost:8000/boxscore/${prevWeek}/${abbreviation}`,
-        {
-          method: "GET",
-        }
-      ).then((response) => response.json());
+      // http://localhost:8000/
+      const url = await fetch(`/teamAPI/boxscore/${prevWeek}/${abbreviation}`, {
+        method: "GET",
+      }).then((response) => response.json());
       if (url[0]?.score === undefined) {
         setData({
           stats: "none",
@@ -52,12 +50,10 @@ export function BoxScore({ gamesPlayed, teamAbbreviation, totalweeks }: any) {
 
   useEffect(() => {
     async function data() {
-      const url = await fetch(
-        `http://localhost:8000/boxscore/${prevWeek}/${abbreviation}`,
-        {
-          method: "GET",
-        }
-      ).then((response) => response.json());
+      // http://localhost:8000/
+      const url = await fetch(`/teamAPI/boxscore/${prevWeek}/${abbreviation}`, {
+        method: "GET",
+      }).then((response) => response.json());
       if (url[0]?.score === undefined) {
         setData({
           stats: "none",
@@ -74,7 +70,8 @@ export function BoxScore({ gamesPlayed, teamAbbreviation, totalweeks }: any) {
 
     async function check() {
       const url = await fetch(
-        `http://localhost:8000/boxscore/${prevWeek + 1}/${abbreviation}`,
+        // http://localhost:8000/
+        `/teamAPI/boxscore/${prevWeek + 1}/${abbreviation}`,
         {
           method: "GET",
         }

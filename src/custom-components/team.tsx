@@ -11,7 +11,8 @@ export function Team({ totalweeks }: any) {
 
   useEffect(() => {
     async function data() {
-      const url = await fetch(`http://localhost:8000/team/${abbreviation}`, {
+      // http://localhost:8000/
+      const url = await fetch(`/teamAPI/team/${abbreviation}`, {
         method: "GET",
       }).then((response) => response.json());
       setData(url);
@@ -25,7 +26,8 @@ export function Team({ totalweeks }: any) {
 
   useEffect(() => {
     async function data() {
-      const url = await fetch(`http://localhost:8000/team/${abbreviation}`, {
+      // http://localhost:8000/
+      const url = await fetch(`/teamAPI/team/${abbreviation}`, {
         method: "GET",
       }).then((response) => response.json());
       setData(url);

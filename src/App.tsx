@@ -18,7 +18,8 @@ function App() {
   const totalweeks = useRef(0);
   useEffect(() => {
     async function data() {
-      const url = await fetch("http://localhost:8000/team", {
+      // http://localhost:8000/team if running on local machine
+      const url = await fetch("/teamAPI/team", {
         method: "GET",
       }).then((response) => response.json());
       setData(url);
