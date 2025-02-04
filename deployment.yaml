@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nflfrontend
-        image: rakinkhan/nfl-frontend:dockerinternal
+        image: rakinkhan/nfl-frontend:kubernetes
         resources:
           limits:
             memory: "128Mi"
