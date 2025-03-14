@@ -87,7 +87,37 @@ export function PlayerCardRight({
       stats: playerStatsChange.fumbles,
     },
   };
-
+  async function data() {
+    const url = await fetch(
+      `http://localhost:8000/${name.firstName}-${name.lastName}/${week}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.text())
+      .then((response) => (response ? JSON.parse(response) : [])); // IMPORTANT
+    console.log(url);
+    if (url[0]?.stats === undefined) {
+      setPlayerStats("DNP");
+      setStatSelected({
+        name: "DNP",
+        grouping: "Did not Participate",
+      });
+      isDNP.current = 2;
+    }
+    if (url[0]?.stats) {
+      setPlayerStats(url[0].stats);
+      setStatSelected({
+        name: "none",
+        grouping: "please select a group",
+      });
+      isDNP.current = 3;
+    }
+    loaded.current = true;
+  }
   categories.forEach((category: any) => {
     const categoryFiltered = references.filter(
       (refCat: any) => refCat.category === category
@@ -125,33 +155,6 @@ export function PlayerCardRight({
   });
 
   useEffect(() => {
-    console.log(week);
-    async function data() {
-      const url = await fetch(
-        `http://localhost:8000/${name.firstName}-${name.lastName}/${week}`,
-        {
-          method: "GET",
-        }
-      ).then((response) => response.json());
-      if (url[0]?.stats === undefined) {
-        setPlayerStats("DNP");
-        setStatSelected({
-          name: "DNP",
-          grouping: "Did not Participate",
-        });
-        isDNP.current = 2;
-      }
-      if (url[0]?.stats) {
-        setPlayerStats(url[0].stats);
-        setStatSelected({
-          name: "none",
-          grouping: "please select a group",
-        });
-        isDNP.current = 3;
-      }
-      loaded.current = true;
-    }
-
     if (week != "all") {
       loaded.current = false;
       data();
@@ -166,7 +169,7 @@ export function PlayerCardRight({
         grouping: "please select a group",
       });
     }
-  }, [week]);
+  }, [week, name]);
 
   if (playerStatsOriginal === playerStatsChange) {
     loaded.current = true;

@@ -45,3 +45,6 @@ spec:
             cpu: "500m"
       imagePullSecrets:
       - name: docker-cred
+
+# kubectl apply -f deployment.yaml
+# kubectl delete -f deployment.yaml

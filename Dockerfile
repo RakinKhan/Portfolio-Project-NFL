@@ -9,17 +9,19 @@ RUN npm install
 COPY . .
 
 RUN npm run build
-# EXPOSE 3000
 
-# CMD ["npm", "start"]
+EXPOSE 3000
 
-FROM nginx:latest
-
-COPY --from=builder /app/build /usr/share/nginx/html/
-COPY ./*.css /usr/share/nginx/html/
-COPY /nginx-server/nginx.conf /etc/nginx/nginx.conf
+CMD ["npm", "start"]
 
 
-EXPOSE 80
+#F ROM nginx:latest
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+# COPY --from=builder /app/build /usr/share/nginx/html/
+# COPY ./*.css /usr/share/nginx/html/
+# COPY /nginx-server/nginx.conf /etc/nginx/nginx.conf
+
+
+# EXPOSE 80
+
+# CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

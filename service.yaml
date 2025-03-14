@@ -25,3 +25,9 @@ spec:
     port: 3000
     targetPort: 80
   type: LoadBalancer
+
+# kubectl apply -f service.yaml
+# kubectl delete -f service.yaml
+
+# minikube service frontend <-- command to expose frontend to browser
+# minikube service backend <-- command to expose backend to browser
