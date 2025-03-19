@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     async function data() {
       // http://localhost:8000/team if running on local machine /teamAPI
-      const url = await fetch("http://localhost:8000/team", {
+      const url = await fetch("/teamAPI/team", {
         method: "GET",
       }).then((response) => response.json());
       setData(url);

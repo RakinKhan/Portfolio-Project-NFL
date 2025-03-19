@@ -6,7 +6,7 @@ services:
       - "8000:8000"
   frontend:
     container_name: frontend
-    image: rakinkhan/nfl-frontend:dockerinternals
+    image: rakinkhan/nfl-frontend:docker
     build:
       context: .
       dockerfile: Dockerfile

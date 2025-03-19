@@ -17,7 +17,7 @@ export function TeamRoster() {
   useEffect(() => {
     async function data() {
       // http://localhost:8000/
-      const url = await fetch(`http://localhost:8000/${abbreviation}/roster`, {
+      const url = await fetch(`/teamAPI/${abbreviation}/roster`, {
         method: "GET",
       }).then((response) => response.json());
       setData(url);
@@ -32,7 +32,7 @@ export function TeamRoster() {
   useEffect(() => {
     async function data() {
       // http://localhost:8000/
-      const url = await fetch(`http://localhost:8000/${abbreviation}/roster`, {
+      const url = await fetch(`/teamAPI/${abbreviation}/roster`, {
         method: "GET",
       }).then((response) => response.json());
       setData(url);
