@@ -12,7 +12,6 @@ terraform {
 }
 
 
-
 # Configure the AWS Provider
 provider "aws" {
   region     = "us-east-1"
@@ -60,9 +59,27 @@ resource "aws_default_route_table" "public_rt" {
   }
 }
 
+# Create a Route Table Association 
+resource "aws_route_table_association" "public_RT_association" {
+  subnet_id      = aws_subnet.main_subnet.id
+  route_table_id = aws_default_route_table.public_rt.id
+}
+#Create an Internet Gateway
 resource "aws_internet_gateway" "public_igw" {
   vpc_id = aws_vpc.main_vpc.id
   tags = {
     Name = "Main Public IGW"
+  }
+}
+
+resource "aws_instance" "public_instance" {
+  ami                         = "ami-08b5b3a93ed654d19"
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.main_subnet.id
+  vpc_security_group_ids      = [aws_default_security_group.default_sg.id]
+  associate_public_ip_address = true
+  key_name                    = "rk-test"
+  tags = {
+    Name = "Frontend Instance"
   }
 }
