@@ -89,7 +89,7 @@ export function PlayerCardRight({
   };
   async function data() {
     const url = await fetch(
-      `http://localhost:8000/${name.firstName}-${name.lastName}/${week}`,
+      `/teamAPI/${name.firstName}-${name.lastName}/${week}`,
       {
         method: "GET",
         headers: {
