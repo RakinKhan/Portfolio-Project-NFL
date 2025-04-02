@@ -64,6 +64,7 @@ resource "aws_route_table_association" "public_RT_association" {
   subnet_id      = aws_subnet.main_subnet.id
   route_table_id = aws_default_route_table.public_rt.id
 }
+
 #Create an Internet Gateway
 resource "aws_internet_gateway" "public_igw" {
   vpc_id = aws_vpc.main_vpc.id
@@ -72,14 +73,69 @@ resource "aws_internet_gateway" "public_igw" {
   }
 }
 
+# Public EC2 Instance
 resource "aws_instance" "public_instance" {
-  ami                         = "ami-08b5b3a93ed654d19"
+  ami                         = "ami-084568db4383264d4"
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.main_subnet.id
   vpc_security_group_ids      = [aws_default_security_group.default_sg.id]
   associate_public_ip_address = true
   key_name                    = "rk-test"
+
+  connection {
+    type        = "ssh"
+    host        = self.public_ip
+    user        = "ubuntu"
+    private_key = file("~/Downloads/rk-test.pem")
+  }
+  provisioner "file" {
+    source      = "~/Downloads/rk-test.pem"
+    destination = "/home/ubuntu/rk-test.pem"
+  }
   tags = {
     Name = "Frontend Instance"
   }
+}
+
+# Private EC2 Instance
+resource "aws_instance" "private_instance" {
+  ami                         = "ami-084568db4383264d4"
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.private_subnet.id
+  vpc_security_group_ids      = [aws_security_group.private_security_group.id]
+  key_name                    = "rk-test"
+  associate_public_ip_address = false
+
+  tags = {
+    Name = "Server Instance"
+  }
+}
+
+resource "aws_eip" "nat" {
+  domain = "vpc"
+}
+
+resource "aws_nat_gateway" "public_subnet_nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.main_subnet.id
+  depends_on    = [aws_internet_gateway.public_igw]
+  tags = {
+    Name = "NAT Gateway"
+  }
+}
+
+resource "aws_route_table" "private_subnet_rt_nat" {
+  vpc_id = aws_vpc.main_vpc.id
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.public_subnet_nat.id
+  }
+  tags = {
+    Name = "NAT Route Table"
+  }
+}
+
+resource "aws_route_table_association" "private_RT_association" {
+  subnet_id      = aws_subnet.private_subnet.id
+  route_table_id = aws_route_table.private_subnet_rt_nat.id
 }
