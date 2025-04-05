@@ -28,5 +28,5 @@ access-credentials.tf
 
 # keys
 api/api-config.js
-
+rk-test.pem
 # kubectl create secret docker-registry docker-cred --docker-server=docker.io --docker-username=rakinkhan --docker-password=QAZwsx123!RK --docker-email=rakinalikhan@gmail.com
